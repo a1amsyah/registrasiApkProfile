@@ -2,38 +2,61 @@ package com.example.apkprofile
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.apkprofile.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        // Inisialisasi binding dengan benar
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Pastikan binding.root digunakan jika ID "main" tidak ada di XML
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val nama = findViewById<EditText>(R.id.editTextTextEmailAddress)
-        val pass = findViewById<EditText>(R.id.editTextTextPassword2)
-        val buttonClick = findViewById<Button>(R.id.button)
+        databaseHelper = DatabaseHelper(this)
 
-        buttonClick.setOnClickListener {
-            if (nama.text.toString() == "akbar" && pass.text.toString() == "123") {
-                val intent = Intent(this, MainActivity::class.java)
-                Toast.makeText(this, "Login Success!", Toast.LENGTH_SHORT).show()
-                startActivity(intent)
+        binding.buttonLogin.setOnClickListener {
+            val loginUsername = binding.editTextTextEmailAddress.text.toString().trim()
+            val loginPassword = binding.editTextTextPassword2.text.toString().trim()
+
+            if (loginUsername.isEmpty() || loginPassword.isEmpty()) {
+                Toast.makeText(this, "Harap isi username dan password", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Login Failed!", Toast.LENGTH_SHORT).show()
+                loginDatabase(loginUsername, loginPassword)
             }
+        }
+
+        binding.Register.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun loginDatabase(username: String, password: String) {
+        val userExists = databaseHelper.readUser(username, password)
+        if (userExists) {
+            Toast.makeText(this, "Login Sukses", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            Toast.makeText(this, "Username dan password salah", Toast.LENGTH_SHORT).show()
         }
     }
 }

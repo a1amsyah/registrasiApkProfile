@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnKeluar.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }
