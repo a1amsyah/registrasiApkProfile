@@ -15,15 +15,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background" />
+        app:srcCompat="@drawable/_3164" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="40dp"
-        android:text="Alif Pasha Daniswara"
+        android:text="Akbar Alamsyah"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="290dp"
-        android:text="atlet"
-        android:textColor="#00BCD4"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Web Developer"
+        android:textColor="#673AB7"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -109,7 +107,7 @@
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
                     android:padding="10dp"
-                    app:srcCompat="@drawable/facebook" />
+                    app:srcCompat="@drawable/note" />
 
                 <ImageView
                     android:layout_width="80dp"
@@ -140,8 +138,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Aplikasi Saya di 2025"
-        android:textColor="#00BCD4"
+        android:text="Project Saya di 2025"
+        android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -213,6 +211,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_note"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -229,7 +228,7 @@
                             android:layout_height="100dp"
                             android:padding="10dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/facebook" />
+                            android:src="@drawable/note" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -242,7 +241,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Facebook"
+                                android:text="Note"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
